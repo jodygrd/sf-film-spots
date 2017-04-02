@@ -1,0 +1,9 @@
+<h1> Where to Spot! </h1>
+
+<div>
+	<% @spots.each do |spot| %>
+	 <h3><%= spot["title"] %></h3>
+	 <%= spot["locations"] %>
+	 <br>
+	<%end%>
+</div>
