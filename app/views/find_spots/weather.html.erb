@@ -1,0 +1,32 @@
+
+<%= form_tag "/weather", method: :post do %>
+	<h3> Search Weather: </h3>
+	City: <input type="text" name="city">
+	<br>
+	State: <input type="text" name="state">
+	<br>
+	<input type="submit" value="get weather">
+<%end%>
+
+<h1> <%= @weather_data["query"]["results"]["channel"]["title"] %> </h1>
+<h2> Current temperature: <%= @weather_data["query"]["results"]["channel"]["item"]["condition"]["temp"] %>
+
+<h1> Five Day Forecast: </h1>
+<% counter = 0 %>
+<% @weather_data["query"]["results"]["channel"]["item"]["forecast"].each do |day| %>
+	<% if counter == 5 %>
+		<% break %>
+	<% end %>
+	<h2><%=day["date"]%></h2>
+	<div>
+		High: <%=day["high"]%> F 
+		<br>
+		Low: <%=day["low"]%> F
+		<br>
+		Forecast: <%=day["text"]%> af
+	</div>
+	<% counter += 1 %>
+<%end%>
+
+
+
